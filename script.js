@@ -53,7 +53,7 @@ function parse_damage(damage){
         return parseInt(parseFloat(damage.substring(0,damage.length - 1)) * billion);
     }
     else if (damage[damage.length - 1] == "M"){
-        return parseInt(parseFloat(damage.substring(0,damage.length - 1)) * billion);
+        return parseInt(parseFloat(damage.substring(0,damage.length - 1)) * million);
     }
     else if (!isNaN(damage[damage.length - 1]))
     {
@@ -89,4 +89,5 @@ function parse_damage(damage){
     URL.revokeObjectURL(url);
 
 }
+
 
