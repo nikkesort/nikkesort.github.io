@@ -48,7 +48,11 @@ function uploaded(event){
 
 function parse_damage(damage){
     const billion = 1000000000;
+    const million = 1000000;
     if (damage[damage.length - 1] == "B"){
+        return parseInt(parseFloat(damage.substring(0,damage.length - 1)) * billion);
+    }
+    else if (damage[damage.length - 1] == "M"){
         return parseInt(parseFloat(damage.substring(0,damage.length - 1)) * billion);
     }
     else if (!isNaN(damage[damage.length - 1]))
@@ -83,4 +87,5 @@ function parse_damage(damage){
     link.download = 'example.csv';  
     link.click();
     URL.revokeObjectURL(url);
+
 }
