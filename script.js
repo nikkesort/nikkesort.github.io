@@ -7,7 +7,7 @@ function uploaded(event){
             const fileContent = e.target.result;
             const split_by_sync = fileContent.split("싱크로 레벨: ");
             const union_mem_size = split_by_sync.length - 1;
-            const infos = [];
+            let infos = [];
             let step;
             for(step = 0; step<union_mem_size; step++){
                 let name;
@@ -31,15 +31,23 @@ function uploaded(event){
                     damage_str = "0";
                 }
                 damage = parse_damage(damage_str);
+                
+                infos.push([name, level, damage_str, damage]);
+            } 
 
-                document.getElementById("result").rows[step + 1].cells[0].innerText = name;
+			infos.sort((a,b) => b[1] - a[1]);
+
+            for(step = 0; step<union_mem_size; step++){
+                let ele = infos[step];
+				let name = ele[0];
+				let level = ele[1];
+				let damage_str = ele[2];
+				let damage = ele[3];
+				document.getElementById("result").rows[step + 1].cells[0].innerText = name;
                 document.getElementById("result").rows[step + 1].cells[1].innerText = level;
                 document.getElementById("result").rows[step + 1].cells[2].innerText = damage_str;
                 document.getElementById("result").rows[step + 1].cells[3].innerText = damage;
-                
-
-                infos.push([name, level, damage_str, damage]);
-            } 
+			}
             downloadFile(infos);
         }
         reader.readAsText(file);
