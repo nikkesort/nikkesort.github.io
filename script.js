@@ -84,8 +84,9 @@ function parse_damage(damage){
 
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'example.csv';  
+    link.download = 'result.csv';  
     link.click();
     URL.revokeObjectURL(url);
 
 }
+
